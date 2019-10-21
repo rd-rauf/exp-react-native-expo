@@ -1,1 +1,1 @@
-# exp-react-native-expo
+# A simple personal expense manager for iOS and Android
