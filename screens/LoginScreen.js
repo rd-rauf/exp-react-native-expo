@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
-import { View, ScrollView, Button, Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
+import { Platform, View, ScrollView, Button, Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
+
+import { Input } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 
 const LoginScreen = (props) => {
     const [email, setEmail] = useState('');
@@ -10,10 +13,16 @@ const LoginScreen = (props) => {
             behavior="padding"
             keyboardVerticalOffset={50}
             style={styles.screen}>
-            <ScrollView keyboardShouldPersistTaps="always" contentContainerStyle={styles.scrollView}>
+            <ScrollView 
+                keyboardShouldPersistTaps="always"
+                contentContainerStyle={styles.scrollView}>
                 <View style={styles.container}>
-                    <TextInput
-                        style={styles.textInput}
+                    <Input
+                        placeholder='Enter email'
+                        leftIcon={
+                            <Ionicons name={Platform.OS == "ios" ? "ios-mail" : "md-mail"} size={32} color="blue" />
+                        }
+                        inputStyle={styles.textInput}
                         onChangeText={e => setEmail(e)}
                         value={email}
                         autoFocus={true}
@@ -66,6 +75,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginHorizontal: 25
     },
     loginButton: {
         flexDirection: 'row',
@@ -84,18 +94,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '90%',
-        height: 50,
         paddingLeft: 10,
-        borderRadius: 10,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginTop: 10,
-        marginBottom: 10,
-        borderTopWidth: 0,
-        borderRightWidth: 0,
-        borderBottomWidth: 1,
-        borderLeftWidth: 0
+        width: '80%',
+        paddingTop: 15,
+        paddingBottom: 15
     }
 });
 
