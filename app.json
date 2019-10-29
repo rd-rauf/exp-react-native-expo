@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "trakkr-react-native",
-    "slug": "trakkr-react-native",
+    "name": "exp-react-native-expo",
+    "slug": "exp-react-native-expo",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
