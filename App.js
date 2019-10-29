@@ -9,33 +9,33 @@ import accountsReducer from './store/reducers/accounts';
 import MainNavigator from './navigation/MainNavigation';
 
 const rootReducer = combineReducers({
-  accounts: accountsReducer,
+    accounts: accountsReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const loadFonts = () => {
-  return Font.loadAsync({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-  });
+    return Font.loadAsync({
+        'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+        'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+    });
 }
 
 export default function App() {
 
-  console.disableYellowBox = true;
+    console.disableYellowBox = true;
 
-  const [fontLoaded, setFontLoaded] = useState(false);
+    const [fontLoaded, setFontLoaded] = useState(false);
 
-  if (!fontLoaded) {
+    if (!fontLoaded) {
+        return (
+            <AppLoading startAsync={() => loadFonts()} onFinish={() => setFontLoaded(true)} />
+        );
+    }
+
     return (
-      <AppLoading startAsync={() => loadFonts()} onFinish={() => setFontLoaded(true)} />
+        <Provider store={store}>
+            <MainNavigator />
+        </Provider>
     );
-  }
-
-  return (
-    <Provider store={store}>
-      <MainNavigator />
-    </Provider>
-  );
 }

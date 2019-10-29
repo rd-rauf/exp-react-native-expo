@@ -16,7 +16,10 @@ import Colors from '../constants/Colors';
 
 const defaultNavOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+        backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
+        borderBottomWidth: 1,
+        elevation: 0, // remove shadow on Android
+        shadowOpacity: 0, // remove shadow on iOS
     },
     headerTitleStyle: {
         fontFamily: 'open-sans-bold'
@@ -78,8 +81,8 @@ const MenuNavigator = createDrawerNavigator(
                         title="Logout"
                         color={Colors.primary}
                         onPress={() => {
+                            props.navigation.navigate({ routeName: 'Login' });
                             // dispatch(authActions.logout());
-                            // props.navigation.navigate('Auth');
                         }}
                     />
                 </SafeAreaView>
