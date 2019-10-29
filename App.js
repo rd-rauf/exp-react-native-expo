@@ -23,6 +23,8 @@ const loadFonts = () => {
 
 export default function App() {
 
+  console.disableYellowBox = true;
+
   const [fontLoaded, setFontLoaded] = useState(false);
 
   if (!fontLoaded) {
