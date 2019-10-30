@@ -1,6 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
+import { Input } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
+
 const INPUT_CHANGE = 'INPUT_CHANGE';
 const INPUT_BLUR = 'INPUT_BLUR';
 
@@ -22,7 +25,7 @@ const inputReducer = (state, action) => {
     }
 };
 
-const Input = props => {
+const ExpInput = props => {
     const [inputState, dispatch] = useReducer(inputReducer, {
         value: props.initialValue ? props.initialValue : '',
         isValid: props.initiallyValid,
@@ -64,13 +67,17 @@ const Input = props => {
 
     return (
         <View style={styles.formControl}>
-            <Text style={styles.label}>{props.label}</Text>
-            <TextInput
+            {/* <Text style={styles.label}>{props.label}</Text> */}
+            <Input
                 {...props}
                 style={styles.input}
+                inputStyle={styles.inputStyle}
                 value={inputState.value}
                 onChangeText={textChangeHandler}
                 onBlur={lostFocusHandler}
+                leftIcon={
+                    <Ionicons name={props.iconName} size="32" color="blue" />
+                }
             />
             {!inputState.isValid && inputState.touched && (
                 <View style={styles.errorContainer}>
@@ -83,7 +90,8 @@ const Input = props => {
 
 const styles = StyleSheet.create({
     formControl: {
-        width: '100%'
+        width: '100%',
+        marginVertical: 25
     },
     label: {
         fontFamily: 'open-sans-bold',
@@ -95,14 +103,18 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderBottomWidth: 1
     },
+    inputStyle: {
+        paddingLeft: 10,
+    },
     errorContainer: {
         marginVertical: 5
     },
     errorText: {
         fontFamily: 'open-sans',
         color: 'red',
-        fontSize: 13
+        fontSize: 13,
+        fontWeight: 'bold'
     }
 });
 
-export default Input;
+export default ExpInput;

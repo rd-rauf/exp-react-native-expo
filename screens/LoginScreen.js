@@ -1,104 +1,95 @@
+// Login Screen
 
-import React, { useState } from 'react';
-import { Platform, View, ScrollView, Button, Text, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
+import React from 'react';
+import {
+    Platform,
+    ScrollView,
+    View,
+    KeyboardAvoidingView,
+    StyleSheet,
+    Button
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
-import { Input } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
+import ExpInput from '../components/UI/Input';
+import Card from '../components/UI/Card';
+import Colors from '../constants/Colors';
 
-const LoginScreen = (props) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const LoginScreen = props => {
     return (
         <KeyboardAvoidingView
             behavior="padding"
             keyboardVerticalOffset={50}
-            style={styles.screen}>
-            <ScrollView 
-                keyboardShouldPersistTaps="always"
-                contentContainerStyle={styles.scrollView}>
-                <View style={styles.container}>
-                    <Input
-                        placeholder='Enter email'
-                        leftIcon={
-                            <Ionicons name={Platform.OS == "ios" ? "ios-mail" : "md-mail"} size={32} color="blue" />
-                        }
-                        inputStyle={styles.textInput}
-                        onChangeText={e => setEmail(e)}
-                        value={email}
-                        autoFocus={true}
-                        autoCapitalize={'none'}
-                        autoCompleteType={'email'}
-                        autoCorrect={false}
-                        keyboardType={'email-address'}
-                        textContentType={'emailAddress'}
-                        placeholder={'Enter email'}
-                        placeholderTextColor={'gray'}
-                        spellCheck={false}
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={p => setPassword(p)}
-                        value={password}
-                        secureTextEntry={true}
-                        autoCapitalize={'none'}
-                        autoCompleteType={'password'}
-                        textContentType={'password'}
-                        placeholder={'Enter password'}
-                        placeholderTextColor={'gray'}
-                        spellCheck={false}
-                    />
-                    <Button style={styles.loginButton} onPress={() => {
-                        props.navigation.navigate({ routeName: 'AccountsList' });
-                    }} title="Login">
-
-                    </Button>
-                </View>
-            </ScrollView>
+            style={styles.screen}
+        >
+            <LinearGradient colors={['#ffffff', '#ffffff']} style={styles.gradient}>
+                <Card style={styles.authContainer}>
+                    <ScrollView>
+                        <ExpInput
+                            autoFocus={true}
+                            id="email"
+                            label="E-Mail"
+                            keyboardType="email-address"
+                            required
+                            email
+                            autoCapitalize="none"
+                            errorText="Please enter a valid email address."
+                            onInputChange={() => { }}
+                            initialValue=""
+                            iconName="ios-mail"
+                        />
+                        <ExpInput
+                            id="password"
+                            label="Password"
+                            keyboardType="default"
+                            secureTextEntry
+                            required
+                            minLength={5}
+                            autoCapitalize="none"
+                            errorText="Please enter a valid password."
+                            onInputChange={() => { }}
+                            initialValue=""
+                        />
+                        <View style={styles.buttonContainer}>
+                            <Button title="Login" color={Colors.primary} onPress={() => { }} />
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            <Button
+                                title="Switch to Sign Up"
+                                color={Colors.accent}
+                                onPress={() => { }}
+                            />
+                        </View>
+                    </ScrollView>
+                </Card>
+            </LinearGradient>
         </KeyboardAvoidingView>
     );
-}
+};
 
-LoginScreen.navigationOptions = navData => {
-    return {
-        headerTitle: 'Authenticate'
-    };
+LoginScreen.navigationOptions = {
+    headerTitle: 'Authenticate'
 };
 
 const styles = StyleSheet.create({
     screen: {
         flex: 1
     },
-    scrollView: {
-        flex: 1,
-    },
-    container: {
+    gradient: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 25
+        alignItems: 'center'
     },
-    loginButton: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '90%',
-        height: 60,
-        padding: 20,
-        backgroundColor: '#DDDDDD',
-        borderRadius: 10,
-        textAlign: 'center',
-        marginTop: 10,
-        marginBottom: 10
-    },
-    textInput: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: 10,
+    authContainer: {
         width: '80%',
-        paddingTop: 15,
-        paddingBottom: 15
+        maxWidth: 400,
+        maxHeight: 400,
+        padding: 20
+    },
+    buttonContainer: {
+        marginTop: 10
     }
 });
 
 export default LoginScreen;
+
