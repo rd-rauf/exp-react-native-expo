@@ -65,7 +65,7 @@ const ExpInput = props => {
 
     return (
         <View style={styles.formControl}>
-            {/* <Text style={styles.label}>{props.label}</Text> */}
+            <Text style={styles.label}>{props.inputLabel}</Text>
             <Input
                 {...props}
                 style={styles.input}

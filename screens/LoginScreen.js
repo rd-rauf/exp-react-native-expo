@@ -28,7 +28,7 @@ const LoginScreen = props => {
                         <ExpInput
                             autoFocus={true}
                             id="email"
-                            label="E-Mail"
+                            inputLabel="E-Mail"
                             keyboardType="email-address"
                             required
                             email
@@ -40,7 +40,7 @@ const LoginScreen = props => {
                         />
                         <ExpInput
                             id="password"
-                            label="Password"
+                            inputLabel="Password"
                             keyboardType="default"
                             secureTextEntry
                             required
@@ -55,13 +55,13 @@ const LoginScreen = props => {
                         <View style={styles.buttonContainer}>
                             <Button title="Login" color={Colors.primary} onPress={() => { }} />
                         </View>
-                        <View style={styles.buttonContainer}>
+                        {/* <View style={styles.buttonContainer}>
                             <Button
                                 title="Switch to Sign Up"
                                 color={Colors.accent}
                                 onPress={() => { }}
                             />
-                        </View>
+                        </View> */}
                     </ScrollView>
                 </Card>
             </LinearGradient>
