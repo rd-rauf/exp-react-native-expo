@@ -36,7 +36,7 @@ const LoginScreen = props => {
                             errorText="Please enter a valid email address."
                             onInputChange={() => { }}
                             initialValue=""
-                            iconName="ios-mail"
+                            iconName={Platform.OS == "ios" ? "ios-mail" : "md-mail"}
                         />
                         <ExpInput
                             id="password"
@@ -49,6 +49,8 @@ const LoginScreen = props => {
                             errorText="Please enter a valid password."
                             onInputChange={() => { }}
                             initialValue=""
+                            iconName={Platform.OS == "ios" ? "ios-lock" : "md-lock"}
+
                         />
                         <View style={styles.buttonContainer}>
                             <Button title="Login" color={Colors.primary} onPress={() => { }} />

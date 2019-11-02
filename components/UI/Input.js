@@ -1,8 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-
-import { Input } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
+import { Input, Icon } from 'react-native-elements';
 
 const INPUT_CHANGE = 'INPUT_CHANGE';
 const INPUT_BLUR = 'INPUT_BLUR';
@@ -75,8 +73,12 @@ const ExpInput = props => {
                 value={inputState.value}
                 onChangeText={textChangeHandler}
                 onBlur={lostFocusHandler}
-                leftIcon={
-                    <Ionicons name={props.iconName} size="32" color="blue" />
+                rightIcon={
+                    <Icon
+                        name={props.iconName}
+                        type='ionicon'
+                        color='#517fa4'
+                    />
                 }
             />
             {!inputState.isValid && inputState.touched && (
@@ -98,13 +100,13 @@ const styles = StyleSheet.create({
         marginVertical: 8
     },
     input: {
-        paddingHorizontal: 2,
-        paddingVertical: 5,
+        paddingHorizontal: 0,
+        paddingVertical: 0,
         borderBottomColor: '#ccc',
         borderBottomWidth: 1
     },
     inputStyle: {
-        paddingLeft: 10,
+        paddingLeft: 0,
     },
     errorContainer: {
         marginVertical: 5
